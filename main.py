@@ -1,16 +1,18 @@
 import sys as system
+from time import ctime
+
 def get_int_input(prompt):
     value = None
     while type(value) != int:
         try:
             value = int(input(prompt))
             return value
+        except KeyboardInterrupt as e:
+            exit()
         except:
             print('check that your input is correct!')
+            print(ctime(), e, file = ERROR_FILE)
             pass
-
-
-
 
 def main ():
     while True:
@@ -28,4 +30,6 @@ def main ():
 
 
 if __name__ ==  '__main__':
+    ERROR_FILE = open('lo.txt', 'a')
     main()
+    ERROR_FILE.close()
